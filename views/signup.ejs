@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting App</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+        var authenticatedUser = <%= data %>
+        console.log(!authenticatedUser);
+        if (authenticatedUser) {
+            $.get("./navigation.ejs", function(data) {
+                console.log(data);
+                $("#menu-placeholder").replaceWith(data);
+            });
+        } else {
+            $.get("./authNavigation.ejs", function(data) {
+                console.log(data);
+                $("#menu-placeholder").replaceWith(data);
+            });
+        }
+    </script>
+
+</head>
+
+<html>
+<div id="menu-placeholder"></div>
+
+<body>
+    <h1>Sign Up</h1>
+
+    <form method = "post" action ="/signup">
+      Username:<br>
+      <input type = "text" name = "username"><br>
+      Password:<br>
+      <input type = "text" name = "password1"><br>
+      Re-enter Password:<br>
+      <input type = "text" name = "password2"><br>
+
+      <input type = "submit">
+
+    </form>
+
+
+
+
+</body>
+
+</html>

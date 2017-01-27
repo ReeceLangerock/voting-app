@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting App</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+        $.get("./authNavigation.ejs", function(data) {
+            $("#menu-placeholder").replaceWith(data);
+        });
+    </script>
+
+</head>
+
+<html>
+<div id="menu-placeholder"></div>
+
+<body>
+    <h1>Hi <%= user.displayName %>!</h1>
+    <h1>Create a new Poll</h1>
+
+    <div class='poll-container'>
+
+
+        <form action='/create-poll/log' class="poll-form" method='post'>
+            <ul class="questions">
+                <li>
+                    <label for="first-name">Poll Question</label>
+                    <input type="text" name="question" required>
+                </li>
+            </ul>
+            <ul class="answers">
+                <li>
+                    <label name="answer">Answer 1: </label>
+                    <input type="text" name="answers" required>
+
+                </li>
+                <li>
+                    <label name="answer">Answer 2: </label>
+                    <input type="text" name="answers" required>
+                </li>
+            </ul>
+
+            <input type="button" name="add" value="+ Add Answer">
+            <input type="submit" name="submitPoll" value="Submit">
+
+        </form>
+    </div>
+</body>
+
+</html>
+<!--load script for form handling -->
+<script type="text/javascript" src="/pageJS/pollHelper.js"></script>
