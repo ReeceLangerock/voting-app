@@ -19,6 +19,7 @@ router.get('/', function(req, res) {
 })
 
 router.post('/log', function(req, res) {
+
       poll.schema.methods.newPoll(req.body.question, req.body.answers, req.user.displayName);
 
     res.send("posted");

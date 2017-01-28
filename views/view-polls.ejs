@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting App</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <script>
+        $.get("./authNavigation.ejs", function(data) {
+            $("#menu-placeholder").replaceWith(data);
+        });
+    </script>
+
+</head>
+
+<html>
+<div id="menu-placeholder"></div>
+
+<body>
+
+    <h1>Your Polls</h1>
+
+    <div>
+        <% for (let pollIndex=0; pollIndex < polls.length; pollIndex++) { %>
+            <h5>
+
+        <%=1+pollIndex %>.)  <%=polls[pollIndex].pollQuestion %>
+        <input type="checkbox" name=<%=polls[pollIndex]['_id']%>>
+      </h5>
+            <ul>
+                <% for (let questionIndex=0; questionIndex < polls[pollIndex].pollData.pollChoices.length; questionIndex++) { %>
+                    <li>
+
+                        <%=1+questionIndex %>.)
+                            <%=polls[pollIndex].pollData.pollChoices[questionIndex] %>
+                    </li>
+
+                    <% } %>
+            </ul>
+            <% } %>
+
+
+    </div>
+
+    <input type ="button" name = "deletePollButton" value="Delete Poll(s)">
+
+</body>
+<script type="text/javascript" src="/pageJS/viewPollHelper.js"></script>
+</html>

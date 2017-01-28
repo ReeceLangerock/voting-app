@@ -19,7 +19,7 @@ pollSchema.methods.newPoll = function(question, choices, creator) {
         '_id': tempID,
         'pollQuestion': question,
         'pollData': {
-            'pollChoices': [choices],
+            'pollChoices': choices,
             'pollResponses': 0
         },
         'createdBy': creator,

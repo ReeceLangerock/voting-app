@@ -12,7 +12,7 @@ function addAnswer(e) {
     questionList.innerHTML = questionList.innerHTML + `
     <li>
       <label name="answer">Answer ${++count}:</label>
-      <input type="text" name="answers" required>
+      <input type="text" name="answers[]" required>
       </li>
       `;
 

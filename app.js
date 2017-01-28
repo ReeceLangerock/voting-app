@@ -44,6 +44,7 @@ app.get('/', function(req, res){
 app.use('/signup', require('./controllers/signup'));
 app.use('/signin', require('./controllers/signin'));
 app.use('/create-poll', require('./controllers/create-poll'));
+app.use('/view-polls', require('./controllers/viewPolls'));
 app.use('/logout', require('./controllers/logout'));
 
 // launch ==========================
