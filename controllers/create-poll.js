@@ -20,10 +20,11 @@ router.get('/', function(req, res) {
 
 router.post('/log', function(req, res) {
 
-      poll.schema.methods.newPoll(req.body.question, req.body.answers, req.user.displayName);
+    var result = poll.schema.methods.newPoll(req.body.question, req.body.answers, req.user.displayName);
 
-    res.send("posted");
+    res.redirect(`../poll/${result}`);
 })
+
 
 
 module.exports = router;

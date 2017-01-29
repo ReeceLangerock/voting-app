@@ -20,15 +20,40 @@ router.get('/', function(req, res) {
             polls: response
         };
         res.render('view-polls')
+        res.end();
     });
+
 })
 
-router.post('/delete', function(req, res){
+router.post('/delete', function(req, res) {
 
-  console.log(req.body);
-  //console.log(req.body);
+    deletePolls(req.body).then(function(response, error) {
+        if (error) {
+            throw error;
+        }
+        res.send({redirect: '/'});
+    })
+
+    //console.log(req.body);
 })
 
+
+function deletePolls(pollArray) {
+    return new Promise(function(resolve, reject) {
+
+        poll.remove({
+            _id: {
+                $in: pollArray
+            }
+        }, function(err, obj) {
+            if (err) {
+                return reject(err);
+            } else if (obj) {
+                return resolve(true); // if username already taken return true
+            }
+        });
+    });
+}
 
 function queryUserPolls(userID) {
     return new Promise(function(resolve, reject) {
@@ -38,7 +63,7 @@ function queryUserPolls(userID) {
             if (err) {
                 return reject();
             } else if (obj) {
-                return resolve(obj.createdPolls); // if username already taken return true
+                return resolve(obj.createdPolls);
             }
         });
     });

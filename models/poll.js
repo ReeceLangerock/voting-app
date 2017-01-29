@@ -46,9 +46,11 @@ pollSchema.methods.newPoll = function(question, choices, creator) {
             upsert: true,
             new: true
         }, function(err, doc) {
-            console.log(doc);
+            mongoose.disconnect();
         })
     });
+
+    return tempID;
 }
 
 

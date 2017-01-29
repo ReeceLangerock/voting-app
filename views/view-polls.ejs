@@ -27,7 +27,7 @@
             <h5>
 
         <%=1+pollIndex %>.)  <%=polls[pollIndex].pollQuestion %>
-        <input type="checkbox" name=<%=polls[pollIndex]['_id']%>>
+        <input type="checkbox" name = <%=polls[pollIndex].pollQuestion%> id = <%=polls[pollIndex]['_id']%>>
       </h5>
             <ul>
                 <% for (let questionIndex=0; questionIndex < polls[pollIndex].pollData.pollChoices.length; questionIndex++) { %>
