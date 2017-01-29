@@ -1,8 +1,16 @@
 const deleteButton = document.querySelector('[name=deletePollButton]');
-
+const goToButtons = document.querySelectorAll('[name=goToPoll]');
 
 deleteButton.addEventListener('click', deletePolls);
-//submitButton.addEventListener('click', validateForm);
+goToButtons.forEach(goButton => goButton.addEventListener(('click'), goToPoll));
+
+
+function goToPoll(e){
+  e.preventDefault();
+  console.log(this.id);
+  var pollID = this.id;
+  window.location.href = "../poll/"+pollID;
+}
 
 function deletePolls(e) {
     e.preventDefault();
@@ -30,6 +38,4 @@ function deletePolls(e) {
   else{
     null;
   }
-
-
 }
