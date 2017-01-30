@@ -3,8 +3,6 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var poll = require('../models/poll');
 
-
-
 router.get('/', function(req, res) {
     res.send('404');
 })

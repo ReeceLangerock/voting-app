@@ -10,7 +10,8 @@ var pollSchema = mongoose.Schema({
     },
     'totalResponses': Number,
     'createdBy': String,
-    'creationDate': Date
+    'creationDate': Date,
+    'ipThatVoted': [String]
 });
 
 
