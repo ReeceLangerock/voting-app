@@ -8,6 +8,7 @@ var pollSchema = mongoose.Schema({
         'pollChoices': [String],
         'pollResponses': [Number]
     },
+    'totalResponses': Number,
     'createdBy': String,
     'creationDate': Date
 });
@@ -15,13 +16,18 @@ var pollSchema = mongoose.Schema({
 
 pollSchema.methods.newPoll = function(question, choices, creator) {
     var tempID = new ObjectID();
+    var numAnswers =[];
+    for(var i=0; i < choices.length;i++){
+      numAnswers.push(0);
+    }
     var newPoll = new pollModel({
         '_id': tempID,
         'pollQuestion': question,
         'pollData': {
             'pollChoices': choices,
-            'pollResponses': 0
+            'pollResponses': numAnswers
         },
+        'totalResponses': 0,
         'createdBy': creator,
         'creationDate': new Date()
     });
@@ -34,7 +40,6 @@ pollSchema.methods.newPoll = function(question, choices, creator) {
         }
 
     }).then(function() {
-        console.log("thening")
         userModel.findOneAndUpdate({
             githubDisplay: creator
         }, {
@@ -46,7 +51,7 @@ pollSchema.methods.newPoll = function(question, choices, creator) {
             upsert: true,
             new: true
         }, function(err, doc) {
-            mongoose.disconnect();
+            //mongoose.disconnect();
         })
     });
 

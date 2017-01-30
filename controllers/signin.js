@@ -31,7 +31,7 @@ passport.deserializeUser(function(user, done) {
       if (err) {
           console.log(err);
       } else if (obj) {
-          console.log(true); // if username already taken return true
+          console.log("deserialize;"+true); // if username already taken return true
       } else {
           userModel.schema.methods.newUser(user.displayName, user.id);
       }

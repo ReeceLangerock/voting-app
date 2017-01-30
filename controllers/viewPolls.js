@@ -19,8 +19,8 @@ router.get('/', function(req, res) {
         res.locals = {
             polls: response
         };
+        console.log("viewPolls");
         res.render('view-polls')
-        res.end();
     });
 
 })
@@ -34,7 +34,6 @@ router.post('/delete', function(req, res) {
         res.send({redirect: '/'});
     })
 
-    //console.log(req.body);
 })
 
 

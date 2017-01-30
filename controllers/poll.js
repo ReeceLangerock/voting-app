@@ -6,23 +6,22 @@ var poll = require('../models/poll');
 
 
 router.get('/', function(req, res) {
-    res.render('pollPage');
+    res.send('404');
 })
 
 router.get('/:id', function(req, res) {
     var id = req.params.id;
+    console.log("before getPoll query");
     getPoll(id).then(function(response, error) {
         if (error) {
             throw error
         }
-          console.log(response);
+            console.log(":id");
             res.render('pollPage', {
               data: response
             });
 
 
-    }).catch(function(err){
-      res.status(500).send(err);
     })
 })
 
@@ -34,7 +33,7 @@ function getPoll(pollID) {
             if (err) {
                 return reject();
             } else {
-                return resolve(obj); // if username already taken return true
+                return resolve(obj);
             }
 
         });

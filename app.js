@@ -33,13 +33,6 @@ app.use(function(req, res, next){
  next();
 });
 
-app.get('/', function(req, res){
-
-  console.log(req.user);
-  res.render("index", {
-    data: req.isAuthenticated()
-  });
-})
 
 // routes =========================
 app.use('/signup', require('./controllers/signup'));
@@ -48,6 +41,7 @@ app.use('/create-poll', require('./controllers/create-poll'));
 app.use('/view-polls', require('./controllers/viewPolls'));
 app.use('/poll', require('./controllers/poll'));
 app.use('/logout', require('./controllers/logout'));
+app.use('/', require('./controllers/index'));
 
 // launch ==========================
 app.listen(port, function(){

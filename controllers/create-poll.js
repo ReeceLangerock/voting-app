@@ -21,8 +21,8 @@ router.get('/', function(req, res) {
 router.post('/log', function(req, res) {
 
     var result = poll.schema.methods.newPoll(req.body.question, req.body.answers, req.user.displayName);
-
-    res.redirect(`../poll/${result}`);
+    console.log("\nredirect to id\n")
+    res.redirect('/poll/'+result);
 })
 
 

@@ -7,7 +7,6 @@ goToButtons.forEach(goButton => goButton.addEventListener(('click'), goToPoll));
 
 function goToPoll(e){
   e.preventDefault();
-  console.log(this.id);
   var pollID = this.id;
   window.location.href = "../poll/"+pollID;
 }
