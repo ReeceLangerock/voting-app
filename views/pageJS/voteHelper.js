@@ -8,17 +8,39 @@ function commitVote(e) {
     var voteIndex = this.id;
     var pollID = document.querySelector('[class=displayPollContainer]').id;
     console.log(pollID)
-    var url = "/poll/vote";
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json");
+    postVote(voteIndex, pollID).then(function(response, error) {
+      if(response == "recorded"){
+        window.location.href = window.location.href;
+      }
+      else if(response == "denied"){
+        alert("vote denied");
+      }
 
-    xhr.send(JSON.stringify({
-        id: pollID,
-        index: voteIndex
-    }));
-    var json_data = xhr.responseText;
 
+
+    });
+
+
+}
+
+function postVote(voteIndex, pollID) {
+    return new Promise(function(resolve, reject) {
+        var url = "/poll/vote";
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                return resolve(xhr.responseText);
+            }
+        }
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.send(JSON.stringify({
+            id: pollID,
+            index: voteIndex
+        }));
+
+
+    })
 }
 
 function validateVote() {

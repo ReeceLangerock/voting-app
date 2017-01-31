@@ -30,46 +30,78 @@ router.post('/vote', function(req, res) {
     var voteIndex = req.body.index;
     var ipAddress = req.header('x-forwarded-for') || req.connection.remoteAddress;
     var pollID = req.body.id;
-    checkIP(ipAddress).then(function(response, error) {
+    checkIP(pollID, ipAddress).then(function(response, error) {
         if (response == true) {
             return true;
         } else {
             return false;
         }
     }).then(function(response, error) {
-        if (response == true) {
-            return recordVote(pollID, voteIndex);
-            res.send("TEST");
+        if (response == false) {
+            return recordVote(pollID, voteIndex, ipAddress);
         } else {
-
-            res.send("TEST");
+          res.writeHead(200, {
+              'content-type': 'text/html'
+          });
+          res.write("denied");
+          res.end();
         }
     }).then(function(response, error) {
         console.log(response);
+
+        res.writeHead(200, {
+            'content-type': 'text/html'
+        });
+        res.write("recorded");
+        res.end();
+
     });
 
 
 });
 
 //currently a placeholder for check IP function- returning true for new IP
-function checkIP(ipAddress) {
+function checkIP(pollID, ipAddress) {
     return new Promise(function(resolve, reject) {
-        return resolve(true);
+        poll.findOne({
+                _id: pollID,
+                ipThatVoted: ipAddress
+            },
+            function(err, obj) {
+                if (err) {
+                    console.log(err);
+                    return reject();
+
+                } else if (obj) {
+                    console.log(obj);
+                    return resolve(true);
+                } else {
+                    console.log("else");
+                    return resolve(false);
+                }
+            })
+
     })
 
 }
 
-function recordVote(pollID, voteIndex) {
+function recordVote(pollID, voteIndex, ipAddress) {
+    console.log("record");
     return new Promise(function(resolve, reject) {
-        console.log(voteIndex);
-        var answerToUpdate = `pollData.pollResponses[${voteIndex}]`;
+        //voteIndex = Number(voteIndex);
+        var answerToUpdate = 'pollData.pollResponses.' + voteIndex;
         poll.findOneAndUpdate({
             _id: pollID
 
         }, {
             $inc: {
-                answerToUpdate: 1
-            }
+                ['pollData.pollResponses.' + voteIndex]: 1,
+                totalResponses: 1,
+            },
+            $push: {
+                ipThatVoted: ipAddress
+            },
+
         }, {
             safe: true,
             upsert: true,
@@ -77,11 +109,11 @@ function recordVote(pollID, voteIndex) {
 
         }, function(err, doc) {
             if (err) {
+                console.log("error");
                 console.log(err);
                 return reject;
             } else {
-                console.log("resolve");
-                return resolve(doc);
+                return resolve(true);
             }
         });
     })
