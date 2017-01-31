@@ -19,13 +19,29 @@
 <div id="menu-placeholder"></div>
 
 <body>
+    <div class="displayPollContainer" id = <%=data['_id']%>>
+        <div class="displayPollInfo">
+            <h1><%=data.pollQuestion %></h1>
+            <h6>Created by: <%=data.createdBy %></h6>
+            <div class="displayPollAnswers">
+                <% for (let answerIndex=0; answerIndex < data.pollData.pollChoices.length; answerIndex++) { %>
+                    <div name = "voteDiv" id =<%=answerIndex %> class = displayIndividualAnswer>
+                    <h1><%=data.pollData.pollChoices[answerIndex] %></h1>
+                  </div>
+                    <% } %>
+            </div>
 
-    <h1><%=data.pollQuestion %></h1>
+        </div>
 
+        <div class="displayChart">
+            <% for (let answerIndex=0; answerIndex < data.pollData.pollResponses.length; answerIndex++) { %>
+              <h1><%=data.pollData.pollResponses[answerIndex] %></h1>
+            <% } %>
+        </div>
 
-    <h3>Created by: <%=data.createdBy %></h3>
+    </div>
 
 
 </body>
-
+<script type="text/javascript" src="/pageJS/voteHelper.js"></script>
 </html>

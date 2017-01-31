@@ -18,23 +18,32 @@ function addAnswer(e) {
 
 }
 
-/*function validateForm(e){
-  e.preventDefault();
-  var pollQuestion = document.querySelector('[name=question]').value;
-  var pollQuery = document.querySelectorAll('[name=answerText]');
-  var pollAnswers =[];
-  for(var i =0; i < pollQuery.length; i++){
-    pollAnswers.push(pollQuery[i].value);
-  }
-  var good = pollAnswers.every(function(text){
-    return text != "";
-  })
-  console.log(good);
-  return good;
-  if(good){
-    console.log(document.forms["poll-form"]);
-    var pollToSave = document.querySelector('.poll-form');
-    pollToSave.submit();
-  }
 
+
+///TESTIGNGGGGGGGGG
+
+/*function addAnswer(e) {
+    e.preventDefault();
+    var count = document.querySelectorAll('[id=at]');
+    count.forEach(answer => answers.push(answer.value));
+    populateAnswers(answers, answerList);
+    localStorage.setItem('answers', JSON.stringify(answers));
+    answerList.innerHTML = answerList.innerHTML +
+    `<li>
+      <label name="answer">Answer:</label>
+      <input type="text" name="answers[]" required>
+      </li>
+      `;
+}
+
+function populateAnswers(answers = [], answerList) {
+    answerList.innerHTML = answers.map((answer, i) => {
+
+        return `
+  <li>
+    <label name="answer">Answer:</label>
+    <input type="text" name="answers[]" required>
+    </li>
+    `;
+    }).join('');
 }*/

@@ -27,8 +27,6 @@ a{
 }
 
 /*Home Page Poll Display */
-
-
 .pollContainer{
   display:flex;
   list-style: none;
@@ -40,7 +38,7 @@ a{
 .pollItem{
   flex: 0 1 200px;
   margin:5px;
-  background-color: grey;
+
   border: 1px solid black;
 }
 .pollItem h3{
@@ -57,7 +55,35 @@ a{
   padding: 0px;
     margin: 0px;
 }
+/*DISPLAY INDIVIDUAL POLL */
+.displayPollContainer{
+  display:flex;
+  margin:auto;
+  width:90%;
+}
 
+.displayChart{
+  flex: 3;
+  border:1px solid;
+}
+
+.displayPollInfo{
+  flex: 1;
+  border:1px solid;
+
+}
+.displayPollAnswers{
+  display:flex;
+  flex-wrap: wrap;
+}
+
+.displayIndividualAnswer{
+  border:1px solid;
+  background-color: red;
+  margin:5px;
+}
+
+/*CREATE POLL PAGE */
 .questions li{
   display: flex;
   list-style: none;
