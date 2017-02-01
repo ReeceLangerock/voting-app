@@ -33,6 +33,8 @@ function deletePolls(e) {
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(JSON.stringify(checkedBoxesID)); // array of mongodb _ids
+    window.location.href = window.location.href;    
+
   }
   else{
     null;
