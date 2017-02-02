@@ -6,43 +6,97 @@
     <title>Voting App</title>
     <link rel="stylesheet" type="text/css" href="../style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
     <script>
-        $.get("../authNavigation.ejs", function(data) {
-            $("#menu-placeholder").replaceWith(data);
+
+        var authenticatedUser = <%= userAuth %>
+        if (authenticatedUser) {
+            $.get("../authNavigation.ejs", function(data) {
+                $("#menu-placeholder").replaceWith(data);
+            });
+        } else {
+            $.get("../navigation.ejs", function(data) {
+                $("#menu-placeholder").replaceWith(data);
+            });
+        }
+        $.get("../footer.html", function(data) {
+            $("#footer-placeholder").replaceWith(data);
         });
+
     </script>
 
 </head>
 
 <html>
+
+
+
 <div id="menu-placeholder"></div>
 
 <body>
-    <div class = "container">
-    <div class="displayPollContainer" id = <%=data['_id']%>>
-        <div class="displayPollInfo">
-            <h1><%=data.pollQuestion %></h1>
-            <h6>Created by: <%=data.createdBy %></h6>
-            <div class="displayPollAnswers">
-                <% for (let answerIndex=0; answerIndex < data.pollData.pollChoices.length; answerIndex++) { %>
-                    <div name = "voteDiv" id =<%=answerIndex %> class = displayIndividualAnswer>
-                    <h1><%=data.pollData.pollChoices[answerIndex] %></h1>
-                  </div>
-                    <% } %>
+    <div class="container">
+        <div class="displayPollContainer" id=<%=data[ '_id']%>>
+            <div class="displayPollInfo">
+                <h1><%=data.pollQuestion %></h1>
+
+                <div class="displayPollAnswers">
+                    <% for (let answerIndex=0; answerIndex < data.pollData.pollChoices.length; answerIndex++) { %>
+                        <div name="voteDiv" id=<%=answerIndex %> class = displayIndividualAnswer>
+                            <h2><%=data.pollData.pollChoices[answerIndex] %></h2>
+                        </div>
+                        <% } %>
+                </div>
+
+                <h6>Created by: <%=data.createdBy %> on </h6>
+                <button>Share</button>
+
+            </div>
+
+            <div class="displayChart" id = "chartDiv">
+
+                <canvas id="myChart"></canvas>
             </div>
 
         </div>
 
-        <div class="displayChart">
-            <% for (let answerIndex=0; answerIndex < data.pollData.pollResponses.length; answerIndex++) { %>
-              <h1><%=data.pollData.pollResponses[answerIndex] %></h1>
-            <% } %>
-        </div>
-
     </div>
+    <script>
+        function randomHex() {
+            var letters = '0123456789ABCDEF';
+            var hex = '#';
+            for (var i = 0; i < 6; i++) {
+                hex += letters[Math.floor(Math.random() * 16)];
+            }
+            return hex;
+        }
 
-</div>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chartLabels = <%-JSON.stringify(data.pollData.pollChoices) %>
+        var chartResponses = <%-JSON.stringify(data.pollData.pollResponses) %>
+        var chartColors = []
+        for (let i = 0; i < chartResponses.length; i++) {
+            chartColors.push(randomHex());
+        }
+        console.log(chartColors);
+        var data = {
+            labels: chartLabels,
+            datasets: [{
+                data: chartResponses,
+                backgroundColor: chartColors,
+
+            }]
+        }
+
+
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data
+        });
+    </script>
+    <div id="footer-placeholder"></div>
 </body>
 <script type="text/javascript" src="/pageJS/voteHelper.js"></script>
+<script type="text/javascript" src="/pageJS/chartHelper.js"></script>
+
+
 </html>
