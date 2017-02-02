@@ -11,7 +11,7 @@ router.use(bodyParser.json());
 
 router.get('/', function(req, res) {
     res.render('signup', {
-      data: req.isAuthenticated()
+      userAuth: req.isAuthenticated()
     });
 })
 

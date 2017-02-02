@@ -8,9 +8,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
     <script>
-        $.get("./authNavigation.ejs", function(data) {
-            $("#menu-placeholder").replaceWith(data);
+
+        var authenticatedUser = <%= userAuth %>
+        if (authenticatedUser) {
+            $.get("../authNavigation.ejs", function(data) {
+                $("#menu-placeholder").replaceWith(data);
+            });
+        } else {
+            $.get("../navigation.ejs", function(data) {
+                $("#menu-placeholder").replaceWith(data);
+            });
+        }
+        $.get("../footer.html", function(data) {
+            $("#footer-placeholder").replaceWith(data);
         });
+
     </script>
 
 </head>
@@ -20,31 +32,35 @@
 
 <body>
     <div class = "container">
-    <h1>Your Polls</h1>
+    <h1>Your Polls</h1><input type ="button" name = "deletePollButton" value="Delete Poll(s)">
 
-    <div>
+    <div class = "viewPollContainer">
         <% for (let pollIndex=0; pollIndex < polls.length; pollIndex++) { %>
-            <h5>
 
-        <%=1+pollIndex %>.)  <%=polls[pollIndex].pollQuestion %>
-        <input type="checkbox" name = <%=polls[pollIndex].pollQuestion %> id = <%=polls[pollIndex]['_id'] %> >
-        <button name = "goToPoll" id=<%=polls[pollIndex]['_id'] %> value = "go to poll">Go To Poll</button>
+          <div class = "viewPollItem">
+        <h3><%=polls[pollIndex].pollQuestion %></h3>
+
             <ul>
                 <% for (let questionIndex=0; questionIndex < polls[pollIndex].pollData.pollChoices.length; questionIndex++) { %>
                     <li>
 
-                        <%=1+questionIndex %>.)
-                            <%=polls[pollIndex].pollData.pollChoices[questionIndex] %>
+
+                            <%=polls[pollIndex].pollData.pollChoices[questionIndex] %> (<%=polls[pollIndex].pollData.pollResponses[questionIndex] %>)
                     </li>
 
                     <% } %>
             </ul>
+            Total Responses: <b><%=polls[pollIndex].totalResponses %></b>
+            <br>
+            Delete <input type="checkbox" name = <%=polls[pollIndex].pollQuestion %> id = <%=polls[pollIndex]['_id'] %> >
+            <button name = "goToPoll" id=<%=polls[pollIndex]['_id'] %> value = "go to poll">Go To Poll</button>
+          </div>
             <% } %>
 
 
     </div>
 
-    <input type ="button" name = "deletePollButton" value="Delete Poll(s)">
+
 </div>
 </body>
 <script type="text/javascript" src="/pageJS/viewPollHelper.js"></script>

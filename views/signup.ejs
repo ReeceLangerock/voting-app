@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="./style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script>
-        var authenticatedUser = <%= data %>
+        var authenticatedUser = <%= userAuth %>
         console.log(!authenticatedUser);
         if (authenticatedUser) {
             $.get("./navigation.ejs", function(data) {

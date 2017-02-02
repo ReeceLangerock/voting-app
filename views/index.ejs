@@ -8,10 +8,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script>
 
-        var authenticatedUser = <%= data %>
+        var authenticatedUser = <%= userAuth %>
         if (authenticatedUser) {
             $.get("./authNavigation.ejs", function(data) {
-              console.log(data.menu);
                 $("#menu-placeholder").replaceWith(data);
             });
         } else {

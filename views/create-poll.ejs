@@ -7,9 +7,22 @@
     <link rel="stylesheet" type="text/css" href="./style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script>
-        $.get("./authNavigation.ejs", function(data) {
-            $("#menu-placeholder").replaceWith(data);
+
+        var authenticatedUser = <%= userAuth %>
+        if (authenticatedUser) {
+            $.get("./authNavigation.ejs", function(data) {
+              console.log(data.menu);
+                $("#menu-placeholder").replaceWith(data);
+            });
+        } else {
+            $.get("./navigation.ejs", function(data) {
+                $("#menu-placeholder").replaceWith(data);
+            });
+        }
+        $.get("./footer.html", function(data) {
+            $("#footer-placeholder").replaceWith(data);
         });
+
     </script>
 
 </head>
@@ -19,8 +32,16 @@
 
 <body>
   <div class = "container">
+    <div class = "createTopContainer">
+      <div class = "titleContainer">
     <h1>Hi <%= user.displayName %>!</h1>
-    <h1>Create a new Poll</h1>
+    <h1>Make a new Poll</h1>
+  </div>
+  <div class = "buttonContainer">
+    <input type="button" name="add" value="+ Add Answer">
+    <input type="submit" name="submitPoll" value="Submit">
+  </div>
+</div>
 
     <div class='poll-container'>
 
@@ -44,8 +65,7 @@
                 </li>
             </ul>
 
-            <input type="button" name="add" value="+ Add Answer">
-            <input type="submit" name="submitPoll" value="Submit">
+
 
         </form>
     </div>
