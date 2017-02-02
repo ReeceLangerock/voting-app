@@ -9,15 +9,14 @@ router.use(bodyParser.urlencoded({
 router.use(bodyParser.json());
 
 router.get('/', function(req, res) {
-        if(req.isAuthenticated()){
+    if (req.user) {
         res.render('create-poll', {
+            user: req.user,
             userAuth: req.isAuthenticated()
         });
-      }
-      else{
+    } else {
         res.send("404");
-      }
-
+    }
 })
 
 router.post('/log', function(req, res) {

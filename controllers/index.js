@@ -17,7 +17,6 @@ router.get('/', function(req, res) {
     var popularQueryPromise = queryPopularPolls();
 
     Promise.all([recentQueryPromise, popularQueryPromise]).then(function(responses, error) {
-        console.log(responses[0]);
         res.locals = {
             recentPolls: responses[0],
             popularPolls: responses[1],
@@ -54,7 +53,6 @@ function queryPopularPolls() {
             if (err) {
                 return reject();
             } else if (obj) {
-                console.log(obj);
                 return resolve(obj);
             }
         })

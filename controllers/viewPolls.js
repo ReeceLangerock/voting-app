@@ -21,7 +21,9 @@ router.get('/', function(req, res) {
             polls: response
         };
 
-        res.render('view-polls')
+        res.render('view-polls',{
+          userAuth:req.isAuthenticated()
+        })
     });
 }else{
   res.send("404");
