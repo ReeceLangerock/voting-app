@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 var poll = require('../models/poll');
+
 router.use(bodyParser.json());
 
 router.use(bodyParser.urlencoded({
@@ -14,12 +15,14 @@ router.get('/', function(req, res) {
 
 router.get('/:id', function(req, res) {
     var id = req.params.id;
+
     getPoll(id).then(function(response, error) {
         if (error) {
             throw error
         }
         res.render('pollPage', {
-            data: response
+            data: response,
+            userAuth: req.isAuthenticated()
         });
 
 
@@ -47,8 +50,6 @@ router.post('/vote', function(req, res) {
           res.end();
         }
     }).then(function(response, error) {
-        console.log(response);
-
         res.writeHead(200, {
             'content-type': 'text/html'
         });
@@ -73,10 +74,8 @@ function checkIP(pollID, ipAddress) {
                     return reject();
 
                 } else if (obj) {
-                    console.log(obj);
                     return resolve(true);
                 } else {
-                    console.log("else");
                     return resolve(false);
                 }
             })
