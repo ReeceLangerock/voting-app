@@ -21,10 +21,10 @@ router.get('/', function(req, res) {
         res.locals = {
             recentPolls: responses[0],
             popularPolls: responses[1],
-             moment: moment 
+             moment: moment
         };
         res.render('index', {
-            data: req.isAuthenticated()
+            userAuth: req.isAuthenticated()
         })
     })
 
@@ -34,7 +34,7 @@ router.get('/', function(req, res) {
 function queryRecentPolls() {
 
     return new Promise(function(resolve, reject) {
-        poll.find({}).limit(15).sort({
+        poll.find({}).limit(25).sort({
             'creationDate': -1
         }).exec(function(err, obj) {
             if (err) {
@@ -49,7 +49,7 @@ function queryRecentPolls() {
 
 function queryPopularPolls() {
     return new Promise(function(resolve, reject) {
-        poll.find({}).limit(15).sort(
+        poll.find({}).limit(25).sort(
             {'totalResponses':-1}).exec(function(err, obj) {
             if (err) {
                 return reject();

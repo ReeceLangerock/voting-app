@@ -6,7 +6,6 @@ var path = require('path');
 var passport = require('passport');
 var session = require('express-session');
 
-
 var port= process.env.PORT || 3000;
 
 //configuration ========================

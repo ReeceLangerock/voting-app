@@ -10,6 +10,7 @@ router.use(bodyParser.urlencoded({
 }));
 
 router.get('/', function(req, res) {
+  if(req.isAuthenticated()){
     queryUserPolls(req.user.id).then(function(response, error) {
         if (error) {
             throw error;
@@ -19,10 +20,12 @@ router.get('/', function(req, res) {
         res.locals = {
             polls: response
         };
-        console.log("viewPolls");
+
         res.render('view-polls')
     });
-
+}else{
+  res.send("404");
+}
 })
 
 router.post('/delete', function(req, res) {
