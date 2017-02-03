@@ -88,7 +88,6 @@ function checkIP(pollID, ipAddress) {
 }
 
 function recordVote(pollID, voteIndex, ipAddress) {
-    console.log("record");
     return new Promise(function(resolve, reject) {
         //voteIndex = Number(voteIndex);
         var answerToUpdate = 'pollData.pollResponses.' + voteIndex;

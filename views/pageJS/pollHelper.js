@@ -8,46 +8,46 @@ addButton.addEventListener('click', addAnswer);
 function addAnswer(e) {
     e.preventDefault();
     var count = document.querySelectorAll('[name=answer]').length;
-    if(count < 20){
-    questionList.innerHTML = questionList.innerHTML + `
+    if (count < 20) {
+        storeAnswers();
+
+        questionList.innerHTML = questionList.innerHTML + `
     <li>
       <label name="answer">Answer ${++count}:</label>
-      <input type="text" name="answers[]" required>
+      <input id = "answerInput" type="text" name="answers[]" required>
       </li>
       `;
+
+    } else {
+        alert("Poll can only have twenty possible answers!")
     }
-    else{
-      alert("Poll can only have twenty possible answers!")
-    }
+    populateAnswers();
+
 
 }
 
+function storeAnswers() {
+    var answersCurrentlyOnPage = document.querySelectorAll('[id=answerInput]');
+    var answersToStore = [];
+    answersCurrentlyOnPage.forEach(answer => {
+        const item = {
+            text: answer.value
+        }
+        answersToStore.push(item);
 
+    })
+    localStorage.clear();
+    localStorage.setItem('answers', JSON.stringify(answersToStore));
 
-///TESTIGNGGGGGGGGG
-
-/*function addAnswer(e) {
-    e.preventDefault();
-    var count = document.querySelectorAll('[id=at]');
-    count.forEach(answer => answers.push(answer.value));
-    populateAnswers(answers, answerList);
-    localStorage.setItem('answers', JSON.stringify(answers));
-    answerList.innerHTML = answerList.innerHTML +
-    `<li>
-      <label name="answer">Answer:</label>
-      <input type="text" name="answers[]" required>
-      </li>
-      `;
 }
 
-function populateAnswers(answers = [], answerList) {
-    answerList.innerHTML = answers.map((answer, i) => {
+function populateAnswers() {
+    var index = 0;
+    var inputCurrentlyOnPage = document.querySelectorAll('[id=answerInput]');
+    var answers = JSON.parse(localStorage.getItem('answers'));
+    console.log(answers.length);
+    for (var i = 0; i < answers.length; i++){
+    inputCurrentlyOnPage[i].value = answers[i].text;
+}
 
-        return `
-  <li>
-    <label name="answer">Answer:</label>
-    <input type="text" name="answers[]" required>
-    </li>
-    `;
-    }).join('');
-}*/
+}
