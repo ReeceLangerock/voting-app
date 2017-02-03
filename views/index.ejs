@@ -52,7 +52,7 @@
         <div class="pollContainer">
 
             <% for (let pollIndex=0; pollIndex < popularPolls.length; pollIndex++) { %>
-                <div class="pollItem" name="pollDiv" id=< %=popularPolls[pollIndex][ '_id'] %> >
+                <div class="pollItem" name="pollDiv" id=<%=popularPolls[pollIndex][ '_id'] %> >
                     <h3> <%=popularPolls[pollIndex].pollQuestion %></h3>
                     <h5>Votes: <%=popularPolls[pollIndex].totalResponses %></h5>
                     <h6>Created by <%=popularPolls[pollIndex].createdBy %> on
