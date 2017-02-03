@@ -3,8 +3,8 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}button[disabled],input[disabled]{cursor:default;}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0;}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none;}textarea{overflow:auto;vertical-align:top;}table{border-collapse:collapse;border-spacing:0;}body,figure{margin:0;}legend,button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
 /*CSS Color Template
 https://color.adobe.com/Manifolds-of-Grey-color-theme-9080065/?showPublished=true*/
-/*---Navigation Bar ---*/
 
+/*---Navigation Bar ---*/
 .menu ul {
     min-height: 50px;
     align-items: center;
@@ -27,7 +27,7 @@ https://color.adobe.com/Manifolds-of-Grey-color-theme-9080065/?showPublished=tru
     border-radius: 5px;
     text-align: center;
     background-color: #f6f1ee;
-    border: 2px solid;
+    border: 2px solid #5a677a;
     font-size: 20px;
 }
 
@@ -35,6 +35,8 @@ https://color.adobe.com/Manifolds-of-Grey-color-theme-9080065/?showPublished=tru
 .viewPollContainer{
   display:flex;
   flex-wrap: wrap;
+  margin:5px;
+  padding: 5px;
 }
 
 .viewPollItem{
@@ -51,7 +53,6 @@ https://color.adobe.com/Manifolds-of-Grey-color-theme-9080065/?showPublished=tru
 .viewPollItem h3{
   padding:0px;
   margin: 0px;
-
 }
 
 .viewPollItem:nth-child(even) {
@@ -61,14 +62,14 @@ https://color.adobe.com/Manifolds-of-Grey-color-theme-9080065/?showPublished=tru
 .viewPollItem:nth-child(odd) {
     background-color: #e9e4e1;
 }
-/*Home Page Poll Display */
 
-.bodyIndex {
-    background-color: #e9e4e1;
-}
+/*Home Page Poll Display */
 
 body {
     background-color: #e9e4e1;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 .container {
@@ -79,12 +80,14 @@ body {
     padding: 2px;
     border: 3px solid #5a677a;
     border-radius: 8px;
+    flex: 1;
 }
 
 .pollContainer {
     display: flex;
+    margin:5px;
+    padding: 5px;
     list-style: none;
-    margin: 5px;
     flex-wrap: wrap;
     justify-content: flex-start;
 }
@@ -124,22 +127,28 @@ body {
 
 /*DISPLAY INDIVIDUAL POLL */
 
+.pollContainer form {
+    width:100%;
+}
+
+.shareContainer {
+  align-items: center;
+  margin:5px;
+}
+
 .displayPollContainer {
     display: flex;
     flex-wrap: wrap;
     margin: auto;
     color: #29374B;
-
-
 }
 
 
 .displayChart {
     align-items: center;
     flex: 3 1;
-    border-left: 2px solid #5a677a;
-
-
+    border: 1px solid #5a677a;
+    border-radius: 5px;
 }
 
 
@@ -166,27 +175,32 @@ body {
   margin: 0px;
 }
 
-
 /*CREATE POLL PAGE */
 
 .createTopContainer{
+  margin:5px;
+  flex-wrap: wrap;
+  padding: 5px;
   display:flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 2px solid #5a677a;
 }
-.titleContainer{
 
-
-}
 .titleContainer h1{
   margin:5px;
   padding: 0px;
 }
 
 .buttonContainer {
+  align-items: center;
   margin:15px;
 }
 
+.questions{
+    padding: 0px;
+    width: 100%;
+}
 
 .questions li {
     display: flex;
@@ -195,20 +209,25 @@ body {
 }
 
 .questions li input {
-    flex: 1 0 220px;
+    flex: 1 0 110px;
+    width: 100%;
 }
 
 .questions>li>label {
     flex: 1 0 110px;
     max-width: 110px;
+    margin:1px;
 }
 
 .answers {
+  flex: 1 0 110px;
+  padding: 0px;
     align-content: flex-start;
     display: flex;
     list-style: none;
     flex-wrap: wrap;
 }
+
 
 .answers li {
     white-space: nowrap;
@@ -220,20 +239,42 @@ body {
 }
 
 .answers>li>label {
-    width: 110px;
+    margin:1px;
+    width:110px;
 }
 
 .answers>li>input {
-    width: 250px;
+    width:100%;
+    flex: 1 0;margin:1px;
 }
 
+/*404 Page Styling */
+
+.page404{
+  margin:70px;
+  text-align: center;
+}
+.page404 h1{
+  font-size: 100px;
+}
+
+.container404 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #29374B;
+  background-color: white;
+  border: 3px solid #5a677a;
+  border-radius: 8px;
+}
 
 /*FOOTER STYLING */
 
 footer {
     color: #e9e4e1;
     padding: 20px;
-    margin-top: 20px;
+    margin-top: 40px;
     background-color: #5a677a;
     align-items: center;
 }

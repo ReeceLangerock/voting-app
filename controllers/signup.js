@@ -1,4 +1,7 @@
-var express = require('express');
+/*THE APP IS NO LONGER USING THIS METHOD OF VALIDATING/CREATING A NEW USER
+BUT I DIDN'T WANT TO DELETE IT SINCE IT WORKS IN ITS BASIC FORM. */
+
+/*var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 var user = require('../models/user');
@@ -64,4 +67,4 @@ function validatePassword(pass1, pass2) {
 
 }
 
-module.exports = router;
+module.exports = router;*/

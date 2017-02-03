@@ -24,7 +24,6 @@
         });
 
     </script>
-
 </head>
 
 <html>
@@ -32,7 +31,14 @@
 
 <body>
     <div class = "container">
-    <h1>Your Polls</h1><input type ="button" name = "deletePollButton" value="Delete Poll(s)">
+      <div class = "createTopContainer">
+        <div class = "titleContainer">
+      <h1>Your Polls</h1>
+    </div>
+    <div class = "buttonContainer">
+      <input type ="button" name = "deletePollButton" value="Delete Poll(s)">
+    </div>
+  </div>
 
     <div class = "viewPollContainer">
         <% for (let pollIndex=0; pollIndex < polls.length; pollIndex++) { %>
@@ -43,8 +49,6 @@
             <ul>
                 <% for (let questionIndex=0; questionIndex < polls[pollIndex].pollData.pollChoices.length; questionIndex++) { %>
                     <li>
-
-
                             <%=polls[pollIndex].pollData.pollChoices[questionIndex] %> (<%=polls[pollIndex].pollData.pollResponses[questionIndex] %>)
                     </li>
 
@@ -57,9 +61,7 @@
           </div>
             <% } %>
 
-
     </div>
-
 
 </div>
 <div id="footer-placeholder"></div>

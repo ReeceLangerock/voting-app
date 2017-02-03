@@ -20,12 +20,15 @@ router.get('/:id', function(req, res) {
         if (error) {
             throw error
         }
+        if(response == false){
+          res.render('404');
+        }
+        else{
         res.render('pollPage', {
             data: response,
             userAuth: req.isAuthenticated()
         });
-
-
+      }
     })
 })
 
@@ -125,8 +128,11 @@ function getPoll(pollID) {
         }, function(err, obj) {
             if (err) {
                 return reject();
-            } else {
+            } else if(obj){
                 return resolve(obj);
+            }
+            else{
+              return resolve(false);
             }
 
         });

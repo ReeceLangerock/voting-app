@@ -4,7 +4,6 @@ const goToButtons = document.querySelectorAll('[name=goToPoll]');
 deleteButton.addEventListener('click', deletePolls);
 goToButtons.forEach(goButton => goButton.addEventListener(('click'), goToPoll));
 
-
 function goToPoll(e){
   e.preventDefault();
   var pollID = this.id;
@@ -33,7 +32,7 @@ function deletePolls(e) {
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(JSON.stringify(checkedBoxesID)); // array of mongodb _ids
-    window.location.href = window.location.href;    
+    window.location.href = window.location.href;
 
   }
   else{

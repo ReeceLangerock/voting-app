@@ -31,6 +31,7 @@
 <div id="menu-placeholder"></div>
 
 <body>
+
   <div class = "container">
     <div class = "createTopContainer">
       <div class = "titleContainer">
@@ -43,9 +44,7 @@
   </div>
 </div>
 
-    <div class='poll-container'>
-
-
+    <div class='pollContainer'>
         <form action='/create-poll/log' class="poll-form" method='post'>
             <ul class="questions">
                 <li>
@@ -64,12 +63,14 @@
                     <input id = "at" type="text" name="answers[]" required>
                 </li>
             </ul>
-
+            <ul>
             <input type="submit" name="submitPoll" value="Submit">
+          </ul>
 
         </form>
     </div>
   </div>
+  <div id="footer-placeholder"></div>
 </body>
 
 </html>

@@ -15,17 +15,14 @@ router.get('/', function(req, res) {
             userAuth: req.isAuthenticated()
         });
     } else {
-        res.send("404");
+        res.render('404');
     }
 })
 
 router.post('/log', function(req, res) {
 
     var result = poll.schema.methods.newPoll(req.body.question, req.body.answers, req.user.displayName);
-    console.log("\nredirect to id\n")
     res.redirect('/poll/'+result);
 })
-
-
 
 module.exports = router;

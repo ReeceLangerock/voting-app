@@ -16,11 +16,7 @@ function commitVote(e) {
         alert("vote denied");
       }
 
-
-
     });
-
-
 }
 
 function postVote(voteIndex, pollID) {
@@ -38,11 +34,5 @@ function postVote(voteIndex, pollID) {
             id: pollID,
             index: voteIndex
         }));
-
-
     })
-}
-
-function validateVote() {
-
 }

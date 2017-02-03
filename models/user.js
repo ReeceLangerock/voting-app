@@ -7,7 +7,6 @@ var userSchema = mongoose.Schema({
   'createdPolls': [String]
 });
 
-
 userSchema.methods.newUser = function(gitDisplay, gitID){
   var newUser = new userModel({
     '_id': new ObjectID(),

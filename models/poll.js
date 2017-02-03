@@ -59,8 +59,5 @@ pollSchema.methods.newPoll = function(question, choices, creator) {
     return tempID;
 }
 
-
-
-
 var pollModel = mongoose.model('poll', pollSchema, 'polls');
 module.exports = pollModel;

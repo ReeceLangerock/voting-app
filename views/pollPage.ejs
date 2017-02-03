@@ -22,14 +22,10 @@
         $.get("../footer.html", function(data) {
             $("#footer-placeholder").replaceWith(data);
         });
-
     </script>
-
 </head>
 
 <html>
-
-
 
 <div id="menu-placeholder"></div>
 
@@ -47,8 +43,24 @@
                         <% } %>
                 </div>
 
-                <h6>Created by: <%=data.createdBy %> on </h6>
-                <button>Share</button>
+                <br>
+                <div class = "shareContainer">
+                <iframe
+                  src="https://platform.twitter.com/widgets/tweet_button.html?size=l&related=twitterapi%2Ctwitter&text=Check%20out%20this%20poll!&hashtags=FCC"
+                  width="140"
+                  height="38"
+                  title="Twitter Tweet Button"
+                  style="border: 0; overflow: hidden;">
+                </iframe>
+
+                <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button_count&size=small&mobile_iframe=true&width=77&height=20&appId"
+                width="140"
+                height="38"
+                style="border:none;overflow:hidden"
+                scrolling="no" frameborder="0"
+                allowTransparency="true"></iframe>
+              </div>
+              <h6>A poll by <%=data.createdBy %></h6>
 
             </div>
 
@@ -87,7 +99,6 @@
             }]
         }
 
-
         var myChart = new Chart(ctx, {
             type: 'pie',
             data
@@ -96,7 +107,5 @@
     <div id="footer-placeholder"></div>
 </body>
 <script type="text/javascript" src="/pageJS/voteHelper.js"></script>
-
-
 
 </html>

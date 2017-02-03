@@ -1,6 +1,5 @@
 const pollDiv = document.querySelectorAll('[name=pollDiv]');
 
-
 pollDiv.forEach(div => div.addEventListener(('click'), goToPoll));
 
 function goToPoll(e){

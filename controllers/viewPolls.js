@@ -10,24 +10,24 @@ router.use(bodyParser.urlencoded({
 }));
 
 router.get('/', function(req, res) {
-  if(req.isAuthenticated()){
-    queryUserPolls(req.user.id).then(function(response, error) {
-        if (error) {
-            throw error;
-        }
-        return queryPolls(response);
-    }).then(function(response, error) {
-        res.locals = {
-            polls: response
-        };
+    if (req.isAuthenticated()) {
+        queryUserPolls(req.user.id).then(function(response, error) {
+            if (error) {
+                throw error;
+            }
+            return queryPolls(response);
+        }).then(function(response, error) {
+            res.locals = {
+                polls: response
+            };
 
-        res.render('view-polls',{
-          userAuth:req.isAuthenticated()
-        })
-    });
-}else{
-  res.send("404");
-}
+            res.render('view-polls', {
+                userAuth: req.isAuthenticated()
+            })
+        });
+    } else {
+        res.render('404');
+    }
 })
 
 router.post('/delete', function(req, res) {
@@ -36,11 +36,11 @@ router.post('/delete', function(req, res) {
         if (error) {
             throw error;
         }
-        res.send({redirect: '/'});
+        res.send({
+            redirect: '/'
+        });
     })
-
 })
-
 
 function deletePolls(pollArray) {
     return new Promise(function(resolve, reject) {
@@ -87,6 +87,6 @@ function queryPolls(polls) {
             }
         });
     });
-
 }
+
 module.exports = router;

@@ -4,7 +4,6 @@ var bodyParser = require('body-parser');
 var poll = require('../models/poll');
 var moment = require('moment');
 
-
 router.use(bodyParser.json());
 
 router.use(bodyParser.urlencoded({
@@ -26,7 +25,6 @@ router.get('/', function(req, res) {
             userAuth: req.isAuthenticated()
         })
     })
-
 })
 
 

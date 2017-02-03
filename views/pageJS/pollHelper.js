@@ -8,13 +8,17 @@ addButton.addEventListener('click', addAnswer);
 function addAnswer(e) {
     e.preventDefault();
     var count = document.querySelectorAll('[name=answer]').length;
-
+    if(count < 20){
     questionList.innerHTML = questionList.innerHTML + `
     <li>
       <label name="answer">Answer ${++count}:</label>
       <input type="text" name="answers[]" required>
       </li>
       `;
+    }
+    else{
+      alert("Poll can only have twenty possible answers!")
+    }
 
 }
 

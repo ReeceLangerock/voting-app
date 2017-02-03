@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="./style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script>
-
         var authenticatedUser = <%= userAuth %>
         if (authenticatedUser) {
             $.get("./authNavigation.ejs", function(data) {
@@ -21,58 +20,49 @@
         $.get("./footer.html", function(data) {
             $("#footer-placeholder").replaceWith(data);
         });
-
     </script>
-
-
 </head>
 
 <html>
 
 <div id="menu-placeholder"></div>
 
+<body>
+    <div class="container">
+        <h1>FreeCodeCamp Fullstack Project: Voting App</h1>
 
-<body class = "bodyIndex">
-  <div class = "container">
-    <h1>FreeCodeCamp Fullstack Project: Voting App</h1>
+        <h1>Recent Polls</h1>
 
+        <div class="pollContainer">
 
-    <h1>Recent Polls</h1>
-
-    <div class = "pollContainer">
-
-      <% for (let pollIndex=0; pollIndex < recentPolls.length; pollIndex++) { %>
-        <div class = "pollItem" name = "pollDiv" id = <%=recentPolls[pollIndex]['_id'] %> >
-        <h3> <%=recentPolls[pollIndex].pollQuestion %></h3>
-        <h5>Created by <%=recentPolls[pollIndex].createdBy %> on
+            <% for (let pollIndex=0; pollIndex < recentPolls.length; pollIndex++) { %>
+                <div class="pollItem" name="pollDiv" id=< %=recentPolls[pollIndex][ '_id'] %> >
+                    <h3> <%=recentPolls[pollIndex].pollQuestion %></h3>
+                    <h5>Created by <%=recentPolls[pollIndex].createdBy %> on
           <%=moment(recentPolls[pollIndex].creationDate).format("ll") %></h5>
-        <h6>Votes: <%=recentPolls[pollIndex].totalResponses %></h6>
+                    <h6>Votes: <%=recentPolls[pollIndex].totalResponses %></h6>
+
+                </div>
+                <% } %>
 
         </div>
-          <% } %>
 
-    </div>
+        <h1>Most Popular Polls</h1>
 
+        <div class="pollContainer">
 
-    <h1>Most Popular Polls</h1>
-
-    <div class = "pollContainer">
-
-      <% for (let pollIndex=0; pollIndex < popularPolls.length; pollIndex++) { %>
-        <div class = "pollItem" name = "pollDiv" id = <%=popularPolls[pollIndex]['_id'] %> >
-        <h3> <%=popularPolls[pollIndex].pollQuestion %></h3>
-        <h5>Votes: <%=popularPolls[pollIndex].totalResponses %></h5>
-        <h6>Created by <%=popularPolls[pollIndex].createdBy %> on
+            <% for (let pollIndex=0; pollIndex < popularPolls.length; pollIndex++) { %>
+                <div class="pollItem" name="pollDiv" id=< %=popularPolls[pollIndex][ '_id'] %> >
+                    <h3> <%=popularPolls[pollIndex].pollQuestion %></h3>
+                    <h5>Votes: <%=popularPolls[pollIndex].totalResponses %></h5>
+                    <h6>Created by <%=popularPolls[pollIndex].createdBy %> on
           <%=moment(popularPolls[pollIndex].creationDate).format("ll") %></h6>
 
+                </div>
+                <% } %>
 
-      </div>
-          <% } %>
-
+        </div>
     </div>
-
-
-</div>
 
 </body>
 <div id="footer-placeholder"></div>
