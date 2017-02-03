@@ -36,7 +36,7 @@
         <div class="pollContainer">
 
             <% for (let pollIndex=0; pollIndex < recentPolls.length; pollIndex++) { %>
-                <div class="pollItem" name="pollDiv" id=< %=recentPolls[pollIndex][ '_id'] %> >
+                <div class="pollItem" name="pollDiv" id=<%=recentPolls[pollIndex][ '_id'] %> >
                     <h3> <%=recentPolls[pollIndex].pollQuestion %></h3>
                     <h5>Created by <%=recentPolls[pollIndex].createdBy %> on
           <%=moment(recentPolls[pollIndex].creationDate).format("ll") %></h5>
