@@ -11,7 +11,7 @@ router.use(passport.session());
 passport.use(new GithubStrategy({
     clientID: "9b1d8df7cfc994b8d0b8",
     clientSecret: "a384c12cb8b87b52ad88e82a6edd793016fe6800",
-    callbackURL: "http://localhost:3000/signin/callback"
+    callbackURL: "https://voting-app-srl.herokuapp.com/signin/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     return done(null, profile);

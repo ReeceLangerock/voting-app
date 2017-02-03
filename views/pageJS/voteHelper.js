@@ -13,7 +13,7 @@ function commitVote(e) {
         window.location.href = window.location.href;
       }
       else if(response == "denied"){
-        alert("vote denied");
+        alert("You can only vote once per poll. Sorry!");
       }
 
     });

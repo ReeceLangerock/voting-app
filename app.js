@@ -8,7 +8,7 @@ var session = require('express-session');
 var port= process.env.PORT || 3000;
 
 //configuration ========================
-mongoose.connect('mongodb://admin:Indy061515@ds019936.mlab.com:19936/voting-app-srl');
+mongoose.connect(`mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@ds019936.mlab.com:19936/voting-app-srl`);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection eror:'));
 db.once('open', function(){
