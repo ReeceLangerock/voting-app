@@ -4,6 +4,7 @@ const goToButtons = document.querySelectorAll('[name=goToPoll]');
 deleteButton.addEventListener('click', deletePolls);
 goToButtons.forEach(goButton => goButton.addEventListener(('click'), goToPoll));
 
+// redirect to poll when goToPoll button is selected
 function goToPoll(e){
   e.preventDefault();
   var pollID = this.id;
@@ -12,6 +13,7 @@ function goToPoll(e){
 
 function deletePolls(e) {
     e.preventDefault();
+    // query all checkboxes and save which are checked
     var checkboxes = document.querySelectorAll('[type="checkbox"]:checked');
     var checkedBoxesNames =[];
     var checkedBoxesID = [];
@@ -26,6 +28,7 @@ function deletePolls(e) {
     })
     var confirmDeletion = confirm("Are you sure you'd like to delete these polls? This is permanent.\n"+
     formattedNames);
+    //open XMLHttpRequest to post the array of pollIDs to delete
     if(confirmDeletion){
     var url = "/view-polls/delete";
     var xhr = new XMLHttpRequest();

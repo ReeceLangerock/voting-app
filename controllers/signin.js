@@ -1,3 +1,4 @@
+//setup ========================================================================
 var GithubStrategy = require('passport-github').Strategy;
 var express = require('express');
 var passport = require('passport');
@@ -6,8 +7,7 @@ var router = express.Router();
 router.use(passport.initialize());
 router.use(passport.session());
 
-
-
+// github login strategy
 passport.use(new GithubStrategy({
     clientID: "9b1d8df7cfc994b8d0b8",
     clientSecret: "a384c12cb8b87b52ad88e82a6edd793016fe6800",
@@ -26,25 +26,22 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(user, done) {
   userModel.findOne({
-      'githubID': user.id
+      'githubID': user.id // query db for user based of githubID
   }, function(err, obj) {
       if (err) {
           console.log(err);
       } else if (obj) {
-          console.log("deserialize;"+true); // if username already taken return true
+          return true; // if username already taken return true
       } else {
+        // if user hasn't signed in before then create new user
           userModel.schema.methods.newUser(user.displayName, user.id);
       }
   });
-
-  // placeholder for custom user deserialization.
-  // maybe you are going to get the user from mongo by id?
-  // null is for errors
   done(null, user);
 });
 
 
-
+// get call to /signin
 router.get('/', passport.authenticate('github'));
 
 // GitHub will call this URL

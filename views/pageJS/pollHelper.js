@@ -3,8 +3,8 @@ const addButton = document.querySelector('[name=add]');
 const questionList = document.querySelector('.answers')
 
 addButton.addEventListener('click', addAnswer);
-//submitButton.addEventListener('click', validateForm);
 
+// add label/input to page when users clicks add button
 function addAnswer(e) {
     e.preventDefault();
     var count = document.querySelectorAll('[name=answer]').length;
@@ -26,6 +26,7 @@ function addAnswer(e) {
 
 }
 
+// temporarily store poll answers choices into local storage
 function storeAnswers() {
     var answersCurrentlyOnPage = document.querySelectorAll('[id=answerInput]');
     var answersToStore = [];
@@ -41,6 +42,7 @@ function storeAnswers() {
 
 }
 
+// add the stored answers back onto the page in the appropriate input box
 function populateAnswers() {
     var index = 0;
     var inputCurrentlyOnPage = document.querySelectorAll('[id=answerInput]');

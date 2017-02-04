@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 var ObjectID = require('mongodb').ObjectID;
+// schema for users
 var userSchema = mongoose.Schema({
   '_id': String,
   'githubDisplay': String,
