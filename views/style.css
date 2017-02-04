@@ -233,7 +233,7 @@ body {
 
 .answers li {
     white-space: nowrap;
-    flex: 0 1 200px;
+    flex: 0 1 350px;
     justify-content: flex-start;
     display: flex;
     align-items: center;
